@@ -1,0 +1,18 @@
+{
+    "listaDePessoas":[
+        {
+            "nome": "Maria",
+            "idade": 20
+        },
+        {
+            "nome": "João",
+            "idade": 10
+        },
+
+        {
+            "nome": "José",
+            "idade": 22
+        }
+            
+    ]
+}

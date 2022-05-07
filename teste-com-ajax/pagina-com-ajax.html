@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeira aplicação com AJAX</title>
+</head>
+<body>
+    <!--Javascript que cría o objeto de XMLHttpRequest-->
+    <script type="text/javascript">
+        function ajaxFunction(){
+            var xmlHttp;
+            try{
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+            }catch(e){
+                // I    nternet Explorer
+                try{
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                }catch(e){
+                    try{
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }catch(e){
+                        alert("Seu navegador não suporta AJAX!");
+                        return false;
+                    }
+                }
+            }
+
+            xmlHttp.onreadystatechange = function(){
+                // função que possa receber os dados que são retornados pelo usuário.A propriedade do
+                //armazena a função que processará a resposta de um usuário. 
+                if(xmlHttp.readyState == 4){// o pedido esta pronto
+                    // Começar os dados da resposta do usuário
+                    // Os dados emitidos para trás do usuário podem ser recuperados com a propriedade do responseText
+                    // document.myFormtime.value = xmlHttp.responseText;
+                    var myFormTime = document.getElementsByName("time")[0];
+                    myFormTime.value = xmlHttp.responseText;
+                }
+            }
+            // AJAX - Emitindo um pedido ao usuário
+            xmlHttp.open("GET", "time.asp", true);
+            xmlHttp.send();
+        
+        }
+
+
+    </script>
+    <!--objeto chave XMLHttpRequest
+Obs: O Internet Explorer usa um ActiveXObject, quando outros browsers usarem o objeto interno do Javascript chamado XMLHttpRequest
+    -->
+    <form name="myForm">
+        Name: <input type="text" onkeyup="ajaxFunction();" name="username">
+        Time: <input type="text" name="time">
+    </form>
+</body>
+</html>
+<!--
+    Link do livro que contém este exemplo:
+    https://www.academia.edu/10421168/Tutorial_de_AJAX?email_work_card=view-paper
+-->
